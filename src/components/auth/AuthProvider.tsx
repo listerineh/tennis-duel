@@ -38,7 +38,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     await new Promise(resolve => setTimeout(resolve, 500));
 
     // Simplified mock authentication
-    if (username) { // In a real app, validate username and password
+    if (username) { // In a real app, validate username and password against stored credentials
+      // For this mock, we assume if a user is stored, login is successful with any password
+      // If no user is stored, or username doesn't match, this login would typically fail.
+      // However, our current setup means any username "logs in" or creates a new profile.
       const userData: User = { username };
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
       setUser(userData);
@@ -49,6 +52,32 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setIsLoading(false);
   }, [router]);
 
+  const signUp = useCallback(async (username: string, password?: string) => {
+    setIsLoading(true);
+    setError(null);
+    // Simulate API call for sign up
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    if (!username.trim()) {
+      setError('Username is required.');
+      setIsLoading(false);
+      return;
+    }
+    // Basic password policy example (in a real app, this would be more robust)
+    if (password && password.length < 6) {
+        setError('Password must be at least 6 characters long.');
+        setIsLoading(false);
+        return;
+    }
+    // In a real app, you'd check if the username is already taken.
+    // For this mock, we'll overwrite/create a new user.
+    const userData: User = { username }; // Password isn't stored/used in this mock user object for auth
+    localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
+    setUser(userData);
+    router.push('/dashboard');
+    setIsLoading(false);
+  }, [router]);
+
   const logout = useCallback(() => {
     localStorage.removeItem(AUTH_STORAGE_KEY);
     setUser(null);
@@ -56,7 +85,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [router]);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading, error }}>
+    <AuthContext.Provider value={{ user, login, signUp, logout, isLoading, error }}>
       {children}
     </AuthContext.Provider>
   );
