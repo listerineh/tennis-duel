@@ -8,16 +8,16 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 25%; /* #404040 */
+    --background: 276, 4%, 10%;
     --foreground: 210 40% 98%; /* Light cool gray for text */
 
-    --card: 0 0% 35%; /* Darker card */
+    --card: 270, 4%, 13%; /* Darker card */
     --card-foreground: 210 40% 98%;
 
     --popover: 0 0% 30%; /* Even darker popover */
     --popover-foreground: 210 40% 98%;
 
-    --primary: 195 70% 40%; /* HSL(195, 70%, 40%) - #209BD8 */
+    --primary: 120, 61%, 70%; /* HSL(195, 70%, 40%) - #209BD8 */
     --primary-foreground: 210 40% 98%; /* Text on primary */
 
     --secondary: 0 0% 45%; /* Slightly lighter than background for secondary elements */
@@ -26,13 +26,13 @@ body {
     --muted: 0 0% 30%; /* Muted background */
     --muted-foreground: 0 0% 65%; /* Muted text, less bright */
 
-    --accent: 165 50% 40%; /* HSL(165, 50%, 40%) - #3FB374 */
+    --accent: 120, 60%, 47%; /* HSL(165, 50%, 40%) - #3FB374 */
     --accent-foreground: 210 40% 98%; /* Text on accent */
 
     --destructive: 0 70% 50%; /* A standard red for destructive actions */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 50%; /* Visible border on dark background */
+    --border: 240, 3%, 15%; /* Visible border on dark background */
     --input: 0 0% 30%; /* Input background */
     --ring: 195 70% 50%; /* Ring color related to primary, brighter */
     
