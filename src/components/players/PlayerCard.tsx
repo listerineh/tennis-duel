@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { BarChart3, CheckSquare, Square } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface PlayerCardProps {
   player: Player;
